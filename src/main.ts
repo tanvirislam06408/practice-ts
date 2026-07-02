@@ -96,4 +96,66 @@ const total = (...nums: number[]): number => {
     return nums.reduce((prev, curr) => prev + curr);
 }
 
-logMeg(total(1,2,3,5,74))
+logMeg(total(1, 2, 3, 5, 74))
+
+// custom types
+const typeNumber = (value: any): boolean => {
+    return typeof value === 'number' ? true : false
+}
+
+
+// use of never type
+const numberOrString = (value: number | string): string => {
+    if (typeof value === 'string') {
+        return 'string'
+    }
+    if (typeNumber(value)) {
+        return 'number'
+    }
+    return 'this should never happen'
+}
+// 1:42
+
+let value: unknown = 'hello'
+let srt = value as string;
+console.log(srt);
+
+const addOrConcat = (a: number, b: number, c: 'add' | 'concat'): number | string => {
+    if (c === 'add') {
+        return a + b
+    }
+    return 'concat' + a + b
+}
+let myVal: string = addOrConcat(5, 2, 'concat') as string
+let myValAdd: number = addOrConcat(5, 2, 'add') as number
+
+logMeg(myVal)
+logMeg(myValAdd)
+
+// the dom
+
+const img = document.querySelector('img')!
+
+const myImg = document.getElementById('#myImg') as HTMLImageElement
+myImg.src
+img.src
+
+
+// const year = document.getElementById('#year')!
+// const thisYear: string = new Date().getFullYear().toString();
+// year?.setAttribute("dateTime", thisYear)
+
+// year.textContent = thisYear
+
+// 2nd
+
+let year = document.getElementById('year') as HTMLSpanElement
+
+let thisYear: string = new Date().getFullYear().toString();
+
+year.setAttribute("datetime", thisYear)
+year.textContent = thisYear
+
+// 2:04
+
+
